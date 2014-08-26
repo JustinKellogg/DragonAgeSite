@@ -10,7 +10,7 @@ urlpatterns = patterns('',
 
     url(r'^madmin/', include(admin.site.urls)),
     url(r'^admin/', include('mongonaut.urls')),
-    url(r'^', include('dragonAgeSite.reference.urls')),
-    url(r'^reference/', include('dragonAgeSite.reference.urls')),
-    url(r'^post/', include('dragonAgeSite.blog.urls')),
+    url(r'^', include('reference.urls')),
+    url(r'^reference/', include('reference.urls')),
+    url(r'^post/', include('blog.urls')),
 )

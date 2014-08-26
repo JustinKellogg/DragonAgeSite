@@ -33,14 +33,14 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'mongoengine.django.mongo_auth',
+    'mongoengine',
+    'mongonaut',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'dragonAgeSite.reference',
-    'dragonAgeSite.blog',
-    'mongoengine',
-    'mongonaut',
+    'reference',
+    'blog',
 )
 
 AUTH_USER_MODEL = 'mongo_auth.MongoUser'

@@ -1,23 +1,32 @@
-from django.db import models
-from django_mongodb_engine.contrib import MongoDBManager
-from djangotoolbox.fields import ListField
-from djangotoolbox.fields import EmbeddedModelField
+from mongoengine import Document, StringField, ReferenceField, ListField, EmbeddedDocument, CASCADE, EmbeddedDocumentField
 
 
-# Create your models here.
+class User(Document):
+    email = StringField(required=True)
+    first_name = StringField(max_length=50)
+    last_name = StringField(max_length=50)
 
-class Post(models.Model):
-    created_on = models.DateTimeField(auto_now_add=True, null=True)
-    title = models.CharField(max_length=255)
-    text = models.TextField()
-    tags = ListField()
-    comments = ListField(EmbeddedModelField('Comment'))
 
-class Comment(models.Model):
-    created_on = models.DateTimeField(auto_now_add=True)
-    author = EmbeddedModelField('Author')
-    text = models.TextField()
+class Comment(EmbeddedDocument):
+    content = StringField()
+    name = StringField(max_length=120)
 
-class Author(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.EmailField()
+
+class Post(Document):
+    title = StringField(max_length=120, required=True)
+    author = ReferenceField(User, reverse_delete_rule=CASCADE)
+    tags = ListField(StringField(max_length=30))
+    comments = ListField(EmbeddedDocumentField(Comment))
+    meta = {'allow_inheritance': True}
+
+
+class TextPost(Post):
+    content = StringField()
+
+
+class ImagePost(Post):
+    image_path = StringField()
+
+
+class LinkPost(Post):
+    link_url = StringField()

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+from mongoengine import *
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -31,13 +32,18 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
+    'mongoengine.django.mongo_auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dragonAgeSite.reference',
     'dragonAgeSite.blog',
+    'mongoengine',
+    'mongonaut',
 )
+
+AUTH_USER_MODEL = 'mongo_auth.MongoUser'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -56,13 +62,15 @@ WSGI_APPLICATION = 'dragonAgeSite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE':'django_mongodb_engine',
-        'NAME': 'dragonAge',
-    }
-}
+connect('dragonAge', username='django', password='pass', alias='default')
 
+
+AUTHENTICATION_BACKENDS = (
+    'mongoengine.django.auth.MongoEngineBackend',
+)
+
+SESSION_ENGINE = 'mongoengine.django.sessions'
+SESSION_SERIALIZER = 'mongoengine.django.sessions.BSONSerializer'
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 

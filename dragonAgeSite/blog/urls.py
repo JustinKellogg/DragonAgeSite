@@ -2,7 +2,7 @@
 from django.views.generic import ListView, DetailView
 from django.conf.urls import patterns, url
 
-from models import Post
+from .models import Post
 
 
 post_detail = DetailView.as_view(model=Post)
@@ -12,4 +12,3 @@ urlpatterns = patterns('',
     url(r'^post/(?P<pk>[a-z\d]+)/$', post_detail, name='post_detail'),
     url(r'^$', post_list, name='post_list'),
 )
-

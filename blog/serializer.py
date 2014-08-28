@@ -1,7 +1,7 @@
 from rest_framework_mongoengine.serializers import MongoEngineModelSerializer
+from .models import Post
 
-class BlogSerializer(MongoEngineModelSerializer):
+class PostSerializer(MongoEngineModelSerializer):
     class Meta:
-        model = Blog
-        depth = 2
-        exclude = ('approved', )
+        model = Post
+

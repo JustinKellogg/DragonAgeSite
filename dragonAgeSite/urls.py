@@ -8,9 +8,8 @@ urlpatterns = patterns('',
     # url(r'^$', 'dragonAgeSite.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^madmin/', include(admin.site.urls)),
     url(r'^admin/', include('mongonaut.urls')),
     url(r'^', include('reference.urls')),
     url(r'^reference/', include('reference.urls')),
-    url(r'^post/', include('blog.urls')),
+    url(r'^blog/', include('blog.urls')),
 )

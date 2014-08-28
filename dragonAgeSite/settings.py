@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'reference',
     'blog',
+    'rest_framework',
 )
 
 AUTH_USER_MODEL = 'mongo_auth.MongoUser'

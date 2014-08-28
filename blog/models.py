@@ -5,8 +5,15 @@ class User(Document):
     first_name = StringField(max_length=50)
     last_name = StringField(max_length=50)
 
+    slug = StringField(max_length=110, required=True, unique=True)
+
+    meta = { 'indexes': ['slug',] }
+
     def __unicode__(self):
-        return self.first_name + ' ' + self.last_name
+        if self.first_name and self.last_name:
+            return self.first_name + ' ' + self.last_name
+        return self.email
+
 
 class Comment(EmbeddedDocument):
     content = StringField()
@@ -21,7 +28,12 @@ class Post(Document):
     tags = ListField(StringField(max_length=30))
     comments = ListField(EmbeddedDocumentField(Comment))
 
-    meta = {'allow_inheritance': True}
+    slug = StringField(max_length=110, required=True, unique=True)
+
+    meta = {'indexes': ['slug',], 
+            'allow_inheritance': True, 
+            }
+
 
     def __unicode__(self):
         return self.title

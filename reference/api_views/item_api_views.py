@@ -1,5 +1,5 @@
 #from reference.models.item_models import *
-from reference.models import Armor
+from reference.models.item_models import Armor
 from reference.serializers.item_serializer import ArmorSerializer
 from rest_framework_mongoengine.generics import ListAPIView, RetrieveAPIView
 

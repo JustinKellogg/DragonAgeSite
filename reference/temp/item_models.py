@@ -1,4 +1,4 @@
-from mongoengine import Document, StringField, IntField
+from mongoengine import *
 
 
 class Armor(Document):

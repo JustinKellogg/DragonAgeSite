@@ -22,6 +22,9 @@ class Comment(EmbeddedDocument):
     def __unicode__(self):
         return self.name
 
+    def __str__(self):
+        return self.name
+
 class Post(Document):
     title = StringField(max_length=120, required=True)
     author = ReferenceField(User, reverse_delete_rule=CASCADE)

@@ -1,11 +1,9 @@
-#from django.conf.urls.defaults import patterns, url
 from .views import PostListView, PostDetailView
 from .api_views import PostList, PostDetail
 from django.conf.urls import patterns, url
 from mongogeneric import ListView, DetailView
-#from rest_framework.urlpatterns import format_suffix_patterns
+from rest_framework.urlpatterns import format_suffix_patterns
 
-from .models import Post
 
 
 urlpatterns = patterns('',
@@ -18,4 +16,4 @@ urlpatterns = patterns('',
     url(r'^$', PostListView.as_view(), name='post_list'),
 )
 
-#urlpatterns = format_suffix_patterns(urlpatterns)
+urlpatterns = format_suffix_patterns(urlpatterns)

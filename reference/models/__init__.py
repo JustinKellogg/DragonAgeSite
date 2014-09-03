@@ -1,1 +1,2 @@
-from item_models import Armor
+from item_models import *
+

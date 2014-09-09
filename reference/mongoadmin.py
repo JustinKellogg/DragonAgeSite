@@ -57,7 +57,7 @@ class TrapEffectAdmin(MongoAdmin):
     def has_view_permission(self,request):
         return request.user.is_authenticated and request.user.is_active
 
-AdditionalTrapEffect.mongoadmin = TrapEffectAdmin()
+TrapEffect.mongoadmin = TrapEffectAdmin()
 
 class PoisonAdmin(MongoAdmin):
     search_fields = ('title', 'poison_level', 'additional_effect')

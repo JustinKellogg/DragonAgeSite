@@ -127,7 +127,7 @@ class Hallucination(Document):
         super(Hallucination, self).save(*args, **kwargs)
 
 
-class AdditionalTrapEffect(Document):
+class TrapEffect(Document):
 
     title = StringField(max_length=30, required=True)
     dice_lost = IntField()
@@ -147,7 +147,7 @@ class AdditionalTrapEffect(Document):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = self.title.replace(' ', '_')
-        super(AdditionalTrapEffect, self).save(*args, **kwargs)
+        super(TrapEffect, self).save(*args, **kwargs)
 
 
 class Trap(Document):

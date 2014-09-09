@@ -20,7 +20,7 @@ class Requirement(DynamicEmbeddedDocument):
 
 class MagicalMishaps(Document):
 
-    mishap_name = StringField(max_length=30)
+    title = StringField(max_length=30)
     dragon_die = IntField()
     description = StringField()
 
@@ -30,7 +30,7 @@ class MagicalMishaps(Document):
 
 class Spell(Document):
 
-    spell_name = StringField(max_length=30, required=True)
+    title = StringField(max_length=30, required=True)
     magic_school = StringField(choices='')
     spell_type = StringField(choices='')
     mana_cost = IntField(help_text="value is in MP (mana points). 5 = 5MP")
@@ -49,4 +49,8 @@ class Power(Document):
 
 
 class WeaponGroup(Document):
+    pass
+
+
+class Talent(DynamicDocument):
     pass
